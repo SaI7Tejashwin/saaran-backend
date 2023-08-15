@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "saaran-backend"
+version = "0.1.0"
+description = "Webapp that reads docs and summarizes it to concise text"
+authors = ["SaI7Tejashwin <esaitejashwin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "saaran_backend", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+fastapi = {extras = ["all"], version = "^0.101.1"}
+spacy = "^3.6.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
