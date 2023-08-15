@@ -21,7 +21,7 @@ This will automatically create a virtualenv, which can be accessed by
 poetry shell
 ```
 
-execute `exit` in the shell (not `deactivte`) to quit out of the shell. Check out the [CLI documentation](https://python-poetry.org/docs/cli/) for more commands for poetry
+execute `exit` in the shell (not `deactivate`) to quit out of the shell. Check out the [CLI documentation](https://python-poetry.org/docs/cli/) for more commands for poetry
 
 > The backend is built using FastAPI
 
@@ -29,6 +29,7 @@ To run the server try out the command:
 ```
 uvicorn main:app --reload
 ```
+This is in the `src/saaran-backend`
 > Checkout the documentaion for more configurations on uvicorn and gunicorn server deployments.
 
 ## API Testing
