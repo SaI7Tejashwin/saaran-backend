@@ -11,6 +11,9 @@ python = "^3.11"
 requests = "^2.31.0"
 fastapi = {extras = ["all"], version = "^0.101.1"}
 spacy = "^3.6.1"
+joblib = "^1.3.2"
+nltk = "^3.8.1"
+sumy = "^0.11.0"
 
 
 [build-system]
