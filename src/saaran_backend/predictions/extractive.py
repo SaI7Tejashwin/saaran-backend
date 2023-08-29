@@ -18,6 +18,6 @@ def get_extactive():
     return {"model_type": "extractive"}
 
 @router.post('/sumy')
-def predict_sumy(input_text: InputText, background_tasks: BackgroundTasks):
+async def predict_sumy(input_text: InputText, background_tasks: BackgroundTasks):
     summary = sumy_lex_summarize(input_text)
     return {"summary": summary, "message": "text summarized"}

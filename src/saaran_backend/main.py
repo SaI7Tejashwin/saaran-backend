@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
 from predictions import extractive, abstractive
 
@@ -6,6 +7,13 @@ app = FastAPI()
 
 app.include_router(extractive.router)
 app.include_router(abstractive.router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["*"],
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
 class ModelType(str, Enum):
     extract = "extract"
     abstract = "abstract"
@@ -27,3 +35,9 @@ class ModelType(str, Enum):
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+@app.post("/upload")
+async def get_file_upload(request: Request):
+    # data = await request.json()
+    print(request)
+    return {"message": "upload_test"}
