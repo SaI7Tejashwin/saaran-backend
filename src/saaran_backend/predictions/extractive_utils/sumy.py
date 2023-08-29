@@ -9,7 +9,7 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 
 lex_rank_summarizer = LexRankSummarizer()
 
-async def sumy_lex_summarize(input_text: str) -> str:
+def sumy_lex_summarize(input_text: str) -> str:
     summ_text = ""
     my_parser = PlaintextParser.from_string(input_text, Tokenizer('english'))
     lexrank_summary = lex_rank_summarizer(my_parser.document, sentences_count=3)
