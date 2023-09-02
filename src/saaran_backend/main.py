@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
 from predictions import extractive, abstractive
@@ -37,7 +37,11 @@ async def root():
     return {"message": "Hello World"}
 
 @app.post("/upload")
-async def get_file_upload(request: Request):
+async def get_file_upload(file: UploadFile):
     # data = await request.json()
-    print(request)
-    return {"message": "upload_test"}
+    contents = await file.read()
+    return {
+            "filename": file.filename,
+            "extention": file.filename.split(".")[-1],
+            "content": contents
+            }
