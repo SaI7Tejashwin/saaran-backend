@@ -1,9 +1,9 @@
 from enum import Enum
-from fastapi import APIRouter, BackgroundTasks, UploadFile
+from fastapi import APIRouter, BackgroundTasks, File, UploadFile
 from pydantic import BaseModel
 
 #util ML functions
-from .extractive_utils.sumy import (
+from .utils.sumy import (
     sumy_kl_summarize,
     sumy_lex_summarize,
     sumy_luhn_summarize,
@@ -32,15 +32,12 @@ class SumyModelName(str, Enum):
     sumy_lsa = "sumy_lsa"
 
 
-class InputText(BaseModel):
-    text: str
-
 @router.get("/")
 def get_extactive():
     return {"model_type": "extractive"}
 
 @router.post('/{sumy_model_name}')
-async def predict_sumy(sumy_model_name: SumyModelName ,file: UploadFile):
+async def predict_sumy(sumy_model_name: SumyModelName ,file: UploadFile = File(...)):
 
     f_extention: str = file.filename.split(".")[-1]
     f_content: str = await file.read()
