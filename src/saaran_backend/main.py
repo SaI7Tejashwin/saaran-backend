@@ -1,7 +1,11 @@
+from typing import Annotated
+import uvicorn
+
 from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
-from predictions import extractive, abstractive
+from .predictions import extractive, abstractive
+from .predictions.utils.file_extract import extract_file_content
 
 app = FastAPI()
 
@@ -37,11 +41,20 @@ async def root():
     return {"message": "Hello World"}
 
 @app.post("/upload")
-async def get_file_upload(file: UploadFile):
+async def get_file_upload(file: UploadFile = File(...)):
     # data = await request.json()
-    contents = await file.read()
+    # contents = await file.read()
+
+    filename = file.filename
+    extention = file.filename.split(".")[-1]
+
+    if extention == "pdf":
+        contents = extract_file_content(file)
     return {
-            "filename": file.filename,
-            "extention": file.filename.split(".")[-1],
+            "filename": filename,
+            "extention": extention,
             "content": contents
             }
+
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

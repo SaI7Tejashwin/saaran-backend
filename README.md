@@ -25,11 +25,11 @@ execute `exit` in the shell (not `deactivate`) to quit out of the shell. Check o
 
 > The backend is built using FastAPI
 
-To run the server try out the command:
+To run the server try out the command (at the root of the project):
 ```
-uvicorn main:app --reload
+uvicorn src.saaran_backend.main:app --reload
 ```
-This is in the `src/saaran-backend`
+
 > Checkout the documentaion for more configurations on uvicorn and gunicorn server deployments.
 
 ## API Testing
@@ -38,7 +38,17 @@ Your locally hosted uvicorn server can be tested out on tools like Postman or Th
 
 Alternatively, try out <localhost-url>:<port>/docs (127.0.0.1:8000/docs) to test it in FastAPI's interactive API docs
 
+### Summarization Testing
+File summarization API is now up! To try out the summarization yourself, check out these endpoints
+
+```
+http://127.0.0.1:8000/predict/extract/<the-model-you-want-to-try>
+
+```
+
+The models you can try out now are `sumy_lex | sumy_luhn | sumy_kl | sumy_lsa`
+
 ## References
 
-This document is referenced from the [Poetry](https://python-poetry.org/docs/) and [FastAPI](https://fastapi.tiangolo.com/) documentation
+Referenced from the [Poetry](https://python-poetry.org/docs/) and [FastAPI](https://fastapi.tiangolo.com/) documentation
 
