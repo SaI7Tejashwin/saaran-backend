@@ -48,7 +48,7 @@ async def get_file_upload(file: UploadFile = File(...)):
     filename = file.filename
     extention = file.filename.split(".")[-1]
 
-    # contents = extract_file_content(file)
+    contents = extract_file_content(file)
     return {
             "filename": filename,
             "extention": extention,
