@@ -43,12 +43,10 @@ async def root():
 @app.post("/upload")
 async def get_file_upload(file: UploadFile = File(...)):
     # data = await request.json()
-    contents = await file.read()
-
     filename = file.filename
     extention = file.filename.split(".")[-1]
 
-    contents = extract_file_content(file)
+    contents = await extract_file_content(file, extention)
     return {
             "filename": filename,
             "extention": extention,
